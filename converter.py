@@ -1,5 +1,5 @@
 allowables = ["pounds", "dollars", "euro", "yen"]
-rates = [1,2,3,4]
+rates = [1,1.68,1.23,171.61]
 pounds = 'pounds'
 dollars = 'dollars'
 yen = 'yen'
