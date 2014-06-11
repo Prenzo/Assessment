@@ -5,7 +5,7 @@ a = raw_input('Enter currency to convert from?')
 a = a.upper()
 
 
-b = input('Enter currency to convert from?')
+b = raw_input('Enter currency to convert from?')
 b = b.upper()
 
 
