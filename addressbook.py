@@ -8,19 +8,22 @@ if answer == "1" :
 
     lastname = raw_input("What is the persons last name? ")
     firstname = raw_input("What is the persons first name? ")
-    phone = raw_input("What id the persons phone number? ")
+    phone = raw_input("What is the persons phone number? ")
     email = raw_input("What is the persons email address? ")
     address = raw_input("What is the persons address? ")
-
+    town = raw_input("What is the persons town? ")
+    dateofbirth = raw_input("What is the persons date of birth? ")
+    postcode = raw_input("What is the persons postcode? ")
+    
     #create or append addressbookdata
 
     temp1 = open("addressbookdata","a")
     
     #create string to print to file
     #print temp1
-    #print (firstname + " " + lastname + ", " + phone + ", " + email + ", " + address) 
+    #print (firstname + " " + lastname + ", " + phone + ", " + email + ", " + address + ", " + town + ", " + dateofbirth + ", " + postcode) 
 
-    temp1.write(firstname + " " + lastname + ", " + phone + ", " + email + ", " + address)
+    temp1.write(firstname + " " + lastname + ", " + phone + ", " + email + ", " + address + ", " + town + ", " + dateofbirth + ", " + postcode)
     temp1.write("\n")
 
 # SEARCHING FOR A RECORD
