@@ -21,7 +21,7 @@ Possible Problems
 
 There are a few problems that I have thought may occur. One of these would be what would happen if I entered a letter instead of a number when converting. After testing my code, when I enter a letter, the program simply stops, and gives an error. Another problem I thought of is where the currency changes over time. This may cause incorrect currency rates. However this can be edited in the code itself on the second line. If I had more time I would have tried to link the rates to a automatically updating currency converting website, and get the rates directly from there. However, I did not have enough time to do this. I would also make a while loop in the code. This would make it so that after you have converted an amount of money, you could then convert something else, instead of the program stopping The problem I had with the first code, was that it was not as good as the second one. I liked the second one as I made it to show the conversion rates before you actually convert the amount. This is extremely useful as it is much more advances than the first code.
 
-PSEUDOCODE for the first task -
+###PSEUDOCODE for the first task -
 
 BEGIN
 INPUT currency to be converted, currency converting to (Pound Sterling/Euro/US Dollar/Japanese Yen)
@@ -183,9 +183,9 @@ The program will then end
 Python code for the second task -
 
 answer = raw_input("Are You Creating An Entry [Press 1] \nOr Are You Searching An Entry [Press 2] ") 
-#####this line finds out whether the user wants to create or search
+#####This line finds out whether the user wants to create or search
 
-##### IF we are creating 
+#####If we are creating 
 
 if answer == "1" : 
     #print ("This is where we create")
@@ -208,7 +208,7 @@ if answer == "1" :
     temp1.write(firstname + " " + lastname + ", " + phone + ", " + email + ", " + address)
     temp1.write("\n")
 
-##### SEARCHING FOR A RECORD
+#####SEARCHING FOR A RECORD
 
 elif answer == "2" :
     print ("This is where we search")
@@ -222,7 +222,7 @@ elif answer == "2" :
             print ("No results found") #if no file can be found
 
 
-##### USER DID NOT PICK CREATE OR SEARCH 
+#####USER DID NOT PICK CREATE OR SEARCH 
 
 else:
     print ("Incorrect Answer")
