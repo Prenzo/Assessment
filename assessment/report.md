@@ -208,7 +208,7 @@ if answer == "1" :
     temp1.write(firstname + " " + lastname + ", " + phone + ", " + email + ", " + address)
     temp1.write("\n")
 
-#####SEARCHING FOR A RECORD
+#####Searching for a record 
 
 elif answer == "2" :
     print ("This is where we search")
@@ -222,8 +222,7 @@ elif answer == "2" :
             print ("No results found") #if no file can be found
 
 
-#####USER DID NOT PICK CREATE OR SEARCH 
-
+#####User did not pick create or search
 else:
     print ("Incorrect Answer")
     exit()
