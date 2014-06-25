@@ -1,6 +1,7 @@
-Daniel Everson 0047 64305
+#Controlled Assessment
+##Daniel Everson 0047 64305
 
-Task 1 -
+###Task 1 -
 
 Design
 
@@ -73,7 +74,7 @@ currencies= {
     "US Dollar": 1.25
     "Japanese Yen": 171.07
     }
-#This is a dictionary storing the easily changeable exchange rates for each: GBP, EUR, USD and JPY.
+#####This is a dictionary storing the easily changeable exchange rates for each: GBP, EUR, USD and JPY.
 
 short_hand = {
     "GBP": "Pound Sterling",
@@ -81,14 +82,14 @@ short_hand = {
     "USD": "US Dollar",
     "JPY": "Japanese Yen"
     }
-#This is a dictionary showing the programmer which three letter code relates to which currency.
+#####This is a dictionary showing the programmer which three letter code relates to which currency.
 
 print short_hand
-#This shows the user which currency relates to which three letter code.
+#####This shows the user which currency relates to which three letter code.
 
 c_type1 = raw_input("What Currency are you converting from? GBP/EUR/USD/JPY: ")
 c_type1 = c_type1.upper()
-#This allows the user to input a currency to convert from and stores it as the variable 'c_type1' and then capitalises it for the program to read.
+#####This allows the user to input a currency to convert from and stores it as the variable 'c_type1' and then capitalises it for the program to read.
 
 if c_type1 == "GBP" or "EUR" or "USD" or "JPY":
     "You entered %s" %(c_type1)
@@ -140,8 +141,8 @@ def conversion(w, x, y):  #this does the calculations for the convertor
         return round(z, 2)
 
 print "%.2f %s is %.2f %s" %(numb1, short_hand[c_type1], conversion(c_type1, c_type2, numb1), short_hand[c_type2])
-#this prints the converted amount
-Task 2 -
+#####this prints the converted amount
+##Task 2 -
 
 Design
 
@@ -182,9 +183,9 @@ The program will then end
 Python code for the second task -
 
 answer = raw_input("Are You Creating An Entry [Press 1] \nOr Are You Searching An Entry [Press 2] ") 
-#this line finds out whether the user wants to create or search
+#####this line finds out whether the user wants to create or search
 
-# IF we are creating 
+##### IF we are creating 
 
 if answer == "1" : 
     #print ("This is where we create")
@@ -207,7 +208,7 @@ if answer == "1" :
     temp1.write(firstname + " " + lastname + ", " + phone + ", " + email + ", " + address)
     temp1.write("\n")
 
-# SEARCHING FOR A RECORD
+##### SEARCHING FOR A RECORD
 
 elif answer == "2" :
     print ("This is where we search")
@@ -221,7 +222,7 @@ elif answer == "2" :
             print ("No results found") #if no file can be found
 
 
-# USER DID NOT PICK CREATE OR SEARCH 
+##### USER DID NOT PICK CREATE OR SEARCH 
 
 else:
     print ("Incorrect Answer")
