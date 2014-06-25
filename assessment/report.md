@@ -1,165 +1,114 @@
-Task 1 -
+Task 1
+
+Currency Converter
 
 Design
 
-The task was to create a currency converter that -
+For this task I needed to split the code into three different parts. These parts were:
 
-a) Has exchange rates that can be regularly changed by the user.
+1) The system should be able to have exchange rates changed when necessary by the user.
 
-b) User should be able to enter an amount, select chosen currency, and the currency to convert it into.
+2) The user must input the amount they want to convert, the currency they are converting from and the currency they are converting to.
 
-c) Figure shown should be to two decimal places.
+3) The output must be put to two decimal places (eg. £1.09)
 
-The Currencies required to convert are: GBP (£) Euro (€) USD ($) and JPY (¥).
+I also need to make sure that the input is a number, and an error message must be displayed if the input is invalid.
 
-Possible Problems
+Pseudo code
 
-There are a few problems that I have thought may occur. One of these would be what would happen if I entered a letter instead of a number when converting. After testing my code, when I enter a letter, the program simply stops, and gives an error. Another problem I thought of is where the currency changes over time. This may cause incorrect currency rates. However this can be edited in the code itself on the second line. If I had more time I would have tried to link the rates to a automatically updating currency converting website, and get the rates directly from there. However, I did not have enough time to do this. I would also make a while loop in the code. This would make it so that after you have converted an amount of money, you could then convert something else, instead of the program stopping The problem I had with the first code, was that it was not as good as the second one. I liked the second one as I made it to show the conversion rates before you actually convert the amount. This is extremely useful as it is much more advances than the first code.
+It will ask for what abbreviated curremcy code for the currency you want to convert from.
+They will be: GBP, EUR, USD, JPY
+GBP being Pounds Sterling(£), EUR is Euros(€), USD is US Dollars($), JPY is Japanese Yen(¥).
+After that it then asks what currency you want to convert to.
+It will use the same system before, currency codes.
+It will then multiply the input by the currency rate.
+It then prints out the result.
+The answer is the value of the two numbers you just multiplyed.
+This is my plan to make task one work.
 
-PSEUDOCODE for the first task -
+Attempt 1 (FAILED)
 
-BEGIN
-INPUT currency to be converted, currency converting to (Pound Sterling/Euro/US Dollar/Japanese Yen)
-ASSIGN to variables: c_type1, c_type2
-INPUT numb1 as c_type1[key]
-MATCH c_type1, c_type2 to key in dictionary
-IF c_type1 != Pound Sterling and c_type2 != Pound Sterling:
-    CONVERT c_type1 into Pound Sterling
-    CONVERT Pound Sterling into c_type2
-    RETURN int of c_type2
-ELSE:
-    IDENTIFY Pound Sterling as c_type1 or c_type2
-    CHANGE this value to or from Pound Sterling
-    RETURN int of c_type2
-Python code for the first task (This worked, however not how I wanted it to.)
+This was the first code for the convert
 
-allowables = ["pounds", "dollars", "euro", "yen"]
-rates = [1,1.68,1.23,171.61] 
-pounds = 'pounds'
-dollars = 'dollars'
-yen = 'yen'
-euro = 'euro'
-print("Welcome to the currency converter")
+if choice == rates[0]:
+   entry= input("You have selected Pounds. Now please enter a sum of money:")
+   answer = (entry*rates[0])
+   print(answer)
 
-var1 = None
-while var1 not in range(len(allowables)):
-    print('Please type the currency code you wish to convert from')
-    for index, currency in enumerate(allowables):
-        print ('enter {0} for {1}'.format(index, currency))
-    var1 = input("Please type what currency you wish to convert from ")
-var1 = int(var1)
+if choice == rates[1]:
+   entry= input("You have selected Dollar. Now please enter a sum of money:")
+   answer = (entry*rates[1])
+   print(answer)
 
-var2 = None
-while var2 not in range(len(allowables)):
-    print('Please type the currency code you wish to convert to')
-    for index, currency in enumerate(allowables):
-        print ('enter {0} for {1}'.format(index, currency))
-    var2 = input("Please type the currency that you wish to convert to ")
-var2 = int(var2)
+if choice == rates[2]:
+   entry= input("You have selected Yen. Now please enter a sum of money:")
+   answer = (entry*rates[2])
+   print(answer)
 
-var3 = float(input("Please type the amount of currency you wish to convert "))
+if choice == rates[3]:
+   entry= input("You have selected Euro. Now please enter a sum of money:")
+   answer = (entry*rates[3])
+   print(answer)
+Attemt 2 (PASSED)
 
-amount = var3/rates[var1] *rates[var2]
-print(' your converted amount is {0} {1}'.format(amount,allowables[var2]))
-Successful code (attempt 2, exactly how I wanted)
+#http://stackoverflow.com/questions/20398017/showing-decimal-places-python-2-7-and-decimal-datatype#
+#setup the decimal data type (including number of decimal places)
+import decimal
 
-currencies= {     
-    "Pound Sterling": 1, 
-    "Euro": 1.2, 
-    "US Dollar": 1.25
-    "Japanese Yen": 171.07
-    }
-#This is a dictionary storing the easily changeable exchange rates for each: GBP, EUR, USD and JPY.
+#get the current value and type from the user
+currencyAmount = decimal.Decimal(raw_input('please enter the amount: '))
+currencyType = int(raw_input('please enter the type or if you want to change the rates (1 = pound, 2 = euro, 3 = dollar, 4 = yen): '))
 
-short_hand = {
-    "GBP": "Pound Sterling",
-    "EUR": "Euro",
-    "USD": "US Dollar",
-    "JPY": "Japanese Yen"
-    }
-#This is a dictionary showing the programmer which three letter code relates to which currency.
+#set the exchange rates (based on sterling)
+euro = decimal.Decimal('1.2')
+dollar = decimal.Decimal('1.6')
+yen = decimal.Decimal('200')
+#This will multiply the 2 numbers that you want to convert 
 
-print short_hand
-#This shows the user which currency relates to which three letter code.
+#convert the currency into pound sterling
+if (currencyType == 2):
+    currencyAmount = currencyAmount / euro
+elif (currencyType == 3):
+    currencyAmount = currencyAmount / dollar
+elif (currencyType == 4):
+    currencyAmount = currencyAmount / yen
+#Tells the computer if a number 1 to 4 is picked it will run ethier pound, euro, yen or dollars 
 
-c_type1 = raw_input("What Currency are you converting from? GBP/EUR/USD/JPY: ")
-c_type1 = c_type1.upper()
-#This allows the user to input a currency to convert from and stores it as the variable 'c_type1' and then capitalises it for the program to read.
+#ask the user what currency they want it converted into
+currencyConvert = int(raw_input('please enter the currency you would like to convert to (1 = pound, 2 = euro, 3 = dollar, 4 = yen): '))
+#it then takes the numbers 1 to 4 and runs what the number is linked to.
+#convert the currency into the new format (pound already done in previous steps)
+if (currencyConvert == 2):
+    currencyAmount = currencyAmount * euro
+elif (currencyConvert == 3):
+    currencyAmount = currencyAmount * dollar
+elif (currencyConvert == 4):
+    currencyAmount = currencyAmount * yen
 
-if c_type1 == "GBP" or "EUR" or "USD" or "JPY":
-    "You entered %s" %(c_type1)
-else:
-    print c_type1, "is not a valid input"
-    c_type1 = raw_input("Please enter a valid currency to convert from- GBP/EUR/USD/JPY: ")
+#show the amount of money converted to user
+print 'the result of the currency conversion was ',  currencyAmount.quantize(decimal.Decimal('0.00'))
+Task 1 was one of the hardest tasks partly because of trying to convert to numbers. It took a while but i finaly got it. After that it was easy. Just put some words to print to the user to make it look pretty.
 
-c_type2 = raw_input("What Currency are you converting to? GBP/EUR/USD/JPY: ")
-c_type2 = c_type2.upper()
+Task 1 PASSED
 
-if c_type2 == "GBP" or "EUR" or "USD" or "JPY":
-    "You entered %s" %(c_type1)
-else:
-    print c_type2, "is not a valid input"
-    c_type2 = raw_input("Please enter a valid currency to convert to- GBP/EUR/USD/JPY: ")
+Task 2
 
-def rate(c_type1, c_type2): #this is used after the user chooses what they want to convert to and from
-    if c_type1 == "GBP":
-        print "exchange rate is", currencies["Pound Sterling"]
-    if c_type1 == "EUR":
-        print "exchange rate is", currencies["Euro"]
-    if c_type1 == "USD":
-        print "exchange rate is", currencies["US Dollar"]
-    if c_type1 == "JPY":
-        print "exchange rate is", currencies["Japanese Yen"]
-    if c_type2 == "GBP":
-        print "to", currencies["Pound Sterling"]
-    if c_type2 == "EUR":
-        print "to", currencies["Euro"]
-    if c_type2 == "USD":
-        print "to", currencies["US Dollar"]
-    if c_type2 == "JPY":
-        print "to", currencies["Japanese Yen"]
+Address book
 
-rate(c_type1, c_type2)
+A surname and first name
+Two lines of the address and the post code
+A telephone number
+Date of birth
+Email address
+Search with:
 
-numb1 = float(raw_input("How much %s do you wish to convert? " %c_type1)) #this asks the user how much they want to convert
-
-def conversion(w, x, y):  #this does the calculations for the convertor
-    if w == "GBP":
-        z = y * float(currencies[short_hand[x]])
-        return round(z, 2)
-    elif x == "GBP":
-        z = y / float(currencies[short_hand[w]])
-        return round(z, 2)
-    else:
-        z = y / float(currencies[short_hand[w]])
-        z = z * float(currencies[short_hand[x]])
-        return round(z, 2)
-
-print "%.2f %s is %.2f %s" %(numb1, short_hand[c_type1], conversion(c_type1, c_type2, numb1), short_hand[c_type2])
-#this prints the converted amount
-Task 2 -
-
-Design
-
-The task was to create a database that -
-
-1) A system that stores: a) Surname and First name. b) Two lines of address and postcode. c) A telephone number. d) date of birth. e) email address.
-
-2) A search feature which iterates through the entries.
-
-3) Can search through the surname entries and displays a contact.
-
-4) Can search through the date of birth entries by month and display entries within this month.
-
-Possible Problems
-
-The main problem that I could encounter would be if the user entered a search criteria that was not valid. This could be hard to create a code that is only going to show information that the user wants to see. I think it will also be hard to be able to find a file by month. So instead of using letters, the user will have to search using '04' for example, this would search for someone that was born in the month April. I do not think this is too bad, as it still shows the month that the person was born in. I could not actually implement something that would allow the user to delete file's in the database, however this can easily be done if the user looks into the text file which has all the file's in it. The program links to the text file that holds all the information, so this would work very well.
-
-PSEUDOCODE for the second task -
+By surname to retrieve and display the details for a contact
+By the date of birth to retrieve and display all contacts with a birthday in a particular month
+Pseudo code
 
 Welcome the user to the address book     
-The address book will then ask the user to input 1 or 2 to select if they want to add or search for a file on the database
-If the user inputs 1 they will be able to create an entry
+The address book will then ask the user to input two number to select if they want to add or search for an address
+If the user clicks 1 they will be taken to the address adder
 It will ask them to make an address based of their:
 First name
 Last name
@@ -167,104 +116,160 @@ Telephone
 Email 
 Address
 Once this process is done it will add it to the address book to be search for at a later date
-If the user inputs 2 then it will take them to the search engine
-It will give the user a list of searching options
-The user will input any information about the person and the computer will find anyone in the address book with that information
-It will then print to the user all of the people with that information
-If there is no valid search, the program will end
-The program will then end
-Python code for the second task -
+If the user pressed 2 then it will take them to the search engine
+It will ask the user if they want to search by surname or by date of birth
+If 1 is pressed it will ask the user to input a surname
+The user will input a surname and the computer will find anyone in the address book with that surname
+It will then print to the user all of the people with that surname
+If 2 is pressed then it will search with the date of birth
+The user must input the numbers 01 to 12
+The numbers the user has input to the computer will then be used to search for the date of birth
+The computer will then print all of the contacts with the same date
+Task 2 (PASSED)
 
-answer = raw_input("Are You Creating An Entry [Press 1] \nOr Are You Searching An Entry [Press 2] ") 
-#this line finds out whether the user wants to create or search
+# surnames = {
+#     "Jackson": ["Samantha Jackson", "2 Heather Row", "Basingstoke", "RG21 3SD", "01256 135434",   "23/04/1973", "sam.jackson@hotmail.com"]
+#     "VickersJ": ["Jonathan",  "18 Saville Gardens", "Reading", "RG3 5FH", "01196 678254", "04/02/1965", "the_man@btinternet.com"]
+#     "Morris": ["Sally", "The Old Lodge", "Hook", "RG23 5RD", "01256 728443", "19/02/1975", "smorris@fgh.co.uk"]
+#     "Cobbly": ["Harry", "345 The High Street", "Guildford", "GU2 4KJ", "01458 288763", "30/03/1960", "harry.cobbly@somewhere.org.uk"]
+#     "Khan": ["Jasmine", "36 Hever Avenue", "Edenbridge", "TN34 4FG", "01569 276524", "28/02/1980", "jas.khan@hotmail.com"]
+#     "VickersH": ["Harriet", "45 Sage Gardens", "Brighton", "BN3 2FG", "01675 662554", "04/04/1968", "harriet.vickers@btinternet.com"]
+#     }
+#Loads up the address file to the code so it can find them
+addressses = []
+def getAddrs():
+    with open('addressbook.csv')as book:
+        data = book.read()
+        for line in data.split('\r\n'):
+            address = line.split(',')
+            addressses.append(address)
+#This welcomes the user and asks the user to select two choices
+getAddrs()
+print("Welcome to the Address Book!")
+answer = None
+while answer not in ["1", "2"]:
+   answer = raw_input("Are You Adding An Address (Press 1) \nOr finding an address? (Press 2) ") 
 
-# IF we are creating 
 
+
+
+
+#Creating a file into the address book and saving it for later
 if answer == "1" : 
-    #print ("This is where we create")
-    # collect information
+    print (" You have selected to create an entry.")
 
-    lastname = raw_input("What is the persons last name? ") #these lines gets all the person's information to store
+#Now it asks the user info on the person so it is easier to find them
+    lastname = raw_input("What is the persons last name? ")
     firstname = raw_input("What is the persons first name? ")
-    phone = raw_input("What id the persons phone number? ")
+    phone = raw_input("What is the persons phone number? ")
     email = raw_input("What is the persons email address? ")
     address = raw_input("What is the persons address? ")
 
-    #create or append addressbookdata
+    #This line tells the computer to open/create a file
 
-    temp1 = open("addressbookdata","a")
+    tempfile = open("datafile.txt","a")
 
-    #create string to print to file
-    #print temp1
-    #print (firstname + " " + lastname + ", " + phone + ", " + email + ", " + address) 
+    #adds the first name, last name, phone, email and address to the address book
+    tempfile.write(firstname + " " + lastname + ", " + phone + ", " + email + ", " + address)
+    tempfile.write("\n")
+    tempfile.close()
+    quit()
 
-    temp1.write(firstname + " " + lastname + ", " + phone + ", " + email + ", " + address)
-    temp1.write("\n")
+#If searching for a file already created
 
-# SEARCHING FOR A RECORD
+if answer == "2":
+    choice = raw_input("you have selected to search for an entry. Would you like to search by surnames [Press 1] \n Or by month of birth [Press 2]")
 
-elif answer == "2" :
-    print ("This is where we search")
-    searchcriteria = raw_input("Enter your search Criteria: Name, Phone Number, Address, Email, Postcode, or Town ")
-    print searchcriteria
-    temp1 = open("addressbookdata","r") #this opens the text file of the database to search frrom
-    for line in temp1:
-        if searchcriteria in line:
-            print line  #this will print the information frrom the database
-        else:
-            print ("No results found") #if no file can be found
+#asks the user to input the lastname of someone. once done it then searchs the system for anyone with the last name
+#after that it then gives you the list of people with that last name along with their info
+if choice == "1":
+    surname_search = raw_input("What surname are you searching for?: ")
+    for address in addressses:
+        if surname_search == address[0]:
+            print address
 
-
-# USER DID NOT PICK CREATE OR SEARCH 
+#Pretty much the same as the choice 1 but you're looking for the birth month
+if choice == "2":
+    month_search = raw_input("What month are you searching for? \n(in numbers E.G 01=january)")
+    for address in addressses:
+        if len(address)>6:
+            dd,mm,yy = address[6].split('/')
+            if month_search == mm:
+                print address
 
 else:
-    print ("Incorrect Answer")
-    exit()
+   print("Incorrect entry, please restart the programme, and try again.")
+
+It was a pain trying to transfer to contacts at first but once i found out to import the datafile it was fine
+Up to a point were the search line is.
+The search part of the code was one of the worst to overcome.
+I think it was because i was over thinking it.
+But now its fixed and task 2 is complete
+Task 2 PASSED
+
 Task 3
 
-Design -
+ISBN
 
-The task was to create a program that will take in a 10 digit number and calculate the correct 11 digit ISBN.
+The number entered must be correct length
+Only contains the digits 0 to 9
+Pseudo code
 
-a) the number entered must be the correct length
-
-b) only contains the digits 0 to 9.
-
-Possible problems
-
-The main problem of this task would be to make sure the user has not entered any letters, and also that they have entered a 10 digits. This will be hard to stop, as I am not sure exactly how am I going to make sure that the user has entered 10 digits, however I will look into it. One other problem is to make the code output the original 10 numbers and then the ISBN number added onto it, howvever I think I can do this by using print and then adding some other code onto it that stores the 10 digit number that was first entered at the start of the program.
-
-PSEUDOCODE for the third task -
-
-Asks the user to input ten numbers
+Asks the user to input two numbers
+If 2 pressed the programme is ended
+If 1 is pressed the code goes on
+It asks the to input a 10 digit number
 If the digit number is not 10 it then loops to enter a 10 digit number
-Once the user has input a 10 digit number
-Program calculates ISBN number
-Outputs the 10 digit number with ISBN number on the end
-Python code for the third task -
+Once the user has input a 10 digit number the maths side of the code works out the number
+The end result it the output to the user
+Task 3 (PASSED)
 
-ISBN=''
+#Tells the user to choose between starting or ending the programme
+decision = str(input(""" What would you like to do?; 
+1) Convert a 10 digit number to an ISBN number(1) 
+2) Quit and end the programme(2)""")) 
 
-while len(str(ISBN))!=10:
+#Ends the programme
+if decision == "2": 
+    quit()
+    print("Good Bye!") 
 
-    print('Please make sure you have entered a number which is exactly 10 characters long.')
-    ISBN=raw_input('Please enter the 10 digit number: ')
+#Asks the user to input a 10 digit number
+elif decision == "1": 
+    (ISBN)=raw_input("Enter a 10 digit number") 
 
+#If the number isnt 10 it will loop round and ask the user to re-input the number
+while len(ISBN)!= 10: 
 
-Digit1=int(ISBN[0])*11
-Digit2=int(ISBN[1])*10
-Digit3=int(ISBN[2])*9
-Digit4=int(ISBN[3])*8
-Digit5=int(ISBN[4])*7
-Digit6=int(ISBN[5])*6
-Digit7=int(ISBN[6])*5
-Digit8=int(ISBN[7])*4
-Digit9=int(ISBN[8])*3
-Digit10=int(ISBN[9])*2
-Result=(Digit1+Digit2+Digit3+Digit4+Digit5+Digit6+Digit7+Digit8+Digit9+Digit10)
-Remainder=Result%11
-Digit11=11-Remainder
-if Digit11==10:
-   Digit11='X'
-ISBNNumber=str(ISBN)+str(Digit11)
-print('Your 11 digit ISBN Number is ' + ISBNNumber)
+#Informs the user the number that has been given to the computer isnt 10 digits
+    print('you have not entered a 10 digit number!!!') 
+    ISBN=int(input('Please enter a 10 digit number ')) 
+    continue
+
+#This is the math side of things. its pretty much just the ISBN.
+else: 
+
+    Di1=int(ISBN[0])*11
+    Di2=int(ISBN[1])*10
+    Di3=int(ISBN[2])*9
+    Di4=int(ISBN[3])*8
+    Di5=int(ISBN[4])*7
+    Di6=int(ISBN[5])*6
+    Di7=int(ISBN[6])*5
+    Di8=int(ISBN[7])*4
+    Di9=int(ISBN[8])*3
+    Di10=int(ISBN[9])*2
+
+sum=(Di1+Di2+Di3+Di4+Di5+Di6+Di7+Di8+Di9+Di10) 
+
+num=sum%11
+Di11=11-num 
+if Di11==10: 
+    Di11='X'
+ISBNNumber=str(ISBN)+str(Di11) 
+#Shows the user what number has been output by the computer thus being the ISBN number
+print('The ISBN number is -->    ' + ISBNNumber) 
+
+The hardest part of the code was the maths part but nothing else was that bad.
+It was pretty easy.
+Task 3 PASSED
